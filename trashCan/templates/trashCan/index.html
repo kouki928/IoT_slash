@@ -13,9 +13,14 @@
 
     {% else %}
         <form action={% url "auth" %} method="POST">{% csrf_token %}
-            <input type="text" name="user_id">
+            <p>user_id を入力</p>
+            <input type="text" name="user_id"><br>
+            <p>パスワードを入力</p>
+            <input type="text" name="password"><br>
             <input type="submit">
         </form>
+
+        <a href="{% url "signUp" %}">ユーザー登録がまだの場合はこちら</a>
 
     {% endif %}
 </body>
