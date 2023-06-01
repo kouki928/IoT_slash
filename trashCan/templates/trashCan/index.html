@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if user_state == True %}
+        <p>てすとぺーじ</p>
+        <p>{{ user_state }}</p>
+
+    {% else %}
+        <form action={% url "auth" %} method="POST">{% csrf_token %}
+            <input type="text" name="user_id">
+            <input type="submit">
+        </form>
+
+    {% endif %}
+</body>
+</html>
