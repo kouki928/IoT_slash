@@ -14,5 +14,26 @@
     <p>{{ user.user_name }}</p>
     <p>{{ user.environment_score }}</p>
 
+    {% if edit %}
+        <p>編集する</p>
+        <form action={% url "mypage" %} method="POST">{% csrf_token %}
+            <p>編集ボタン</p>
+            <p>user_id</p>
+            <input value="{{user.user_id}}" name="user_id" readonly>
+            <p>user_name</p>
+            <input value="{{user.user_name}}" name="user_name">
+            <input type="hidden" name="edit" value="edit">
+            <input type="submit" id="edit">
+        </form>
+
+    {% else %}
+
+        <form action={% url "mypage" %} method="POST">{% csrf_token %}
+            <p>編集ボタン</p>
+            <input type="hidden" name="edit" value="transition">
+            <input type="submit" id="edit">
+        </form>
+    {% endif %}
+
 </body>
 </html>

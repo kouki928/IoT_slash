@@ -74,6 +74,7 @@ def signUp(request):
                 "user" : existing_user,
                 "error" : True
             })
+            
         except:
         
             User.objects.create_user(username=user_id,password=password)
@@ -91,13 +92,27 @@ def signUp(request):
             
 def mypage(request):
     
+    user_id = request.user
+    user = userInfo.objects.get(user_id=user_id)
+    
     if request.method == "GET":
         
-        user_id = request.user
-        user = userInfo.objects.get(user_id=user_id)
+        return render(request, "trashCan/mypage.html",{
+            "user" : user,
+            "edit" : False
+        })
+    
+    elif request.method == "POST" and request.POST["edit"] == "transition":
         
         return render(request, "trashCan/mypage.html",{
-            "user" : user
+            "user" : user,
+            "edit" : True
         })
         
+    elif request.method == "POST" and request.POST["edit"] == "edit":
+        
+        user.user_name = request.POST["user_name"]
+        user.save()
+        
+        return redirect("mypage")
     
