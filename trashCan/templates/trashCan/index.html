@@ -16,8 +16,9 @@
             <p>てすとぺーじ</p>
             <form action={% url "auth" %} method="POST">{% csrf_token %}
                 <input type="hidden" name="inout" value="logout">
-                <input type="submit">ログアウト</input>
+                <input type="submit"></input>
             </form>
+            <a href="{% url "mypage" %}">マイページ</a>
         </header>
         
 

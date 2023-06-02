@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from .models import userInfo
 from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
@@ -76,6 +77,7 @@ def signUp(request):
         except:
         
             User.objects.create_user(username=user_id,password=password)
+            userInfo.objects.create(user_id=user_id, user_name="未設定", environment_score=0)
             user = authenticate(request, username=user_id, password=password)
             
             if user is not None:
@@ -84,3 +86,18 @@ def signUp(request):
             
             else:
                 return HttpResponse("Error")
+            
+            
+            
+def mypage(request):
+    
+    if request.method == "GET":
+        
+        user_id = request.user
+        user = userInfo.objects.get(user_id=user_id)
+        
+        return render(request, "trashCan/mypage.html",{
+            "user" : user
+        })
+        
+    
