@@ -1,24 +1,51 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static "css/reset.css" %}>
+    <link rel="stylesheet" href={% static "css/index.css" %}>
     <title>Document</title>
 </head>
 <body>
+    
     {% if user_state == True %}
-        <p>てすとぺーじ</p>
-        <p>{{ user_state }}</p>
+        <header>
+            <p>てすとぺーじ</p>
+            <form action={% url "auth" %} method="POST">{% csrf_token %}
+                <input type="hidden" name="inout" value="logout">
+                <input type="submit">ログアウト</input>
+            </form>
+        </header>
+        
+
 
     {% else %}
-        <form action={% url "auth" %} method="POST">{% csrf_token %}
-            <p>user_id を入力</p>
-            <input type="text" name="user_id"><br>
-            <p>パスワードを入力</p>
-            <input type="text" name="password"><br>
-            <input type="submit">
-        </form>
+
+        {% if error %}
+            <form action={% url "auth" %} method="POST">{% csrf_token %}
+                <h3>user_id か password が間違っています。</h3>
+                <p>user_id を入力</p>
+                <input type="text" name="user_id" value={{user_id}}><br>
+                <p>パスワードを入力</p>
+                <input type="text" name="password" value={{password}}><br>
+                <input type="hidden" name="inout" value="login">
+                <input type="submit">
+            </form>
+
+        {% else %}
+            <form action={% url "auth" %} method="POST">{% csrf_token %}
+                <p>user_id を入力</p>
+                <input type="text" name="user_id"><br>
+                <p>パスワードを入力</p>
+                <input type="text" name="password"><br>
+                <input type="hidden" name="inout" value="login">
+                <input type="submit">
+            </form>
+
+        {% endif %}
 
         <a href="{% url "signUp" %}">ユーザー登録がまだの場合はこちら</a>
 
