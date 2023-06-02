@@ -19,7 +19,7 @@
     color: white;
 }
 
-.to_edit{
+.to_edit, .save_button{
 	appearance: none;
 	border: none;
     color: white;
@@ -56,6 +56,14 @@
     font-size: medium;
 }
 
+.button_wrap {
+    padding-left: 45%;
+}
+
+.save_button {
+    padding: 0.5rem 3rem;
+}
+
 hr {
-    margin-left: 15%
+    margin-left: 15%;
 }

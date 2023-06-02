@@ -111,8 +111,18 @@ def mypage(request):
         
     elif request.method == "POST" and request.POST["edit"] == "edit":
         
-        user.user_name = request.POST["user_name"]
+        user_name = request.POST["user_name"]
+        
+        if user_name.split() == []:
+            user_name = "未設定"
+        
+        user.user_name = user_name
+            
         user.save()
+        
+        return redirect("mypage")
+    
+    elif request.method == "POST" and request.POST["edit"] == "back":
         
         return redirect("mypage")
     
