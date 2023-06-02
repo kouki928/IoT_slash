@@ -1,0 +1,27 @@
+.wrap {
+    width: 100%;
+    background-color: rgb(70, 70, 136);
+}
+
+.header {
+    width: 90%;
+    display: inline-flex;
+    margin: 2%;
+}
+
+.title {
+    margin-right: auto;
+    font-size: large;
+    color: white;
+}
+
+.to_edit{
+	appearance: none;
+	border: none;
+    color: white;
+    background-color: rgb(70, 70, 136);
+}
+
+.status_list{
+    list-style: none;
+}

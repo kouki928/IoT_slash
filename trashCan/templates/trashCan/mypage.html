@@ -5,14 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static 'css/reset.css' %}>
+    <link rel="stylesheet" href={% static 'css/mypage.css' %}>
     <title>Document</title>
 </head>
 <body>
-    <p>マイページ</p>
-
-    <p>{{ user.user_id }}</p>
-    <p>{{ user.user_name }}</p>
-    <p>{{ user.environment_score }}</p>
 
     {% if edit %}
         <p>編集する</p>
@@ -28,11 +25,24 @@
 
     {% else %}
 
-        <form action={% url "mypage" %} method="POST">{% csrf_token %}
-            <p>編集ボタン</p>
-            <input type="hidden" name="edit" value="transition">
-            <input type="submit" id="edit">
-        </form>
+        <div class="status">
+            <div class="wrap">
+                <div class="header">
+                    <div class="title">マイページ</div>
+                    <form action={% url "mypage" %} method="POST">{% csrf_token %}
+                        <input type="hidden" name="edit" value="transition">
+                        <input type="submit" id="edit" value="編集" class="to_edit">
+                    </form>
+                </div>
+            </div>
+
+            <ul class="status_list">
+                <li>{{ user.user_id }}</li>
+                <li>{{ user.user_name }}</li>
+                <li>{{ user.environment_score }}</li>
+            </ul>
+
+        </div>
     {% endif %}
 
 </body>
