@@ -1,12 +1,16 @@
 .wrap {
     width: 100%;
+    height: 8%;
     background-color: rgb(70, 70, 136);
+    /* position: fixed; */
+    margin: auto;
 }
 
 .header {
     width: 90%;
     display: inline-flex;
-    margin: 2%;
+    align-items: center;
+    padding: 2%;
 }
 
 .title {
@@ -20,8 +24,38 @@
 	border: none;
     color: white;
     background-color: rgb(70, 70, 136);
+    font-size: medium; 
 }
 
-.status_list{
-    list-style: none;
+.to_home {
+    margin-left: 1%;
+    text-decoration: none;
+    color: white;
+    font-size: medium;
+}
+
+.outer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 2%;
+}
+
+.caption {
+    width: 30%;
+    margin-left: 15%;
+    text-align: center;
+    color: rgb(70, 70, 136);
+    font-size: large;
+}
+
+.data {
+    width: 40%;
+    margin-right: 15%;
+    text-align: left;
+    font-size: medium;
+}
+
+hr {
+    margin-left: 15%
 }
