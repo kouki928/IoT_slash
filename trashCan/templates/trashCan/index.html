@@ -12,14 +12,16 @@
 <body>
     
     {% if user_state == True %}
-        <header>
-            <p>てすとぺーじ</p>
-            <form action={% url "auth" %} method="POST">{% csrf_token %}
-                <input type="hidden" name="inout" value="logout">
-                <input type="submit"></input>
-            </form>
-            <a href="{% url "mypage" %}">マイページ</a>
-        </header>
+        <div class="wrap">
+            <div class="header">
+                <div class="title">ホーム</div>
+                <form action={% url "auth" %} method="POST">{% csrf_token %}
+                    <input type="hidden" name="inout" value="logout">
+                    <input type="submit" value="ログアウト" class="logout_button"></input>
+                </form>
+                <a href={% url 'mypage' %} class="to_home">マイページ</a>
+            </div>
+        </div>
         
 
 
