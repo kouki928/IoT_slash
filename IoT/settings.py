@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-y_#^cuse8rpe5rm56hs2mb$4%+&gkq#fqmd_d15x1qg*e-3b4b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".ngrok-free.app","127.0.0.1"]
 
 
 # Application definition
@@ -124,3 +124,12 @@ STATIC_ROOT = os.path.join(BASE_DIR,"static")
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 8000
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = "information@myproject"

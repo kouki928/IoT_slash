@@ -3,9 +3,13 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .models import userInfo
 from django.contrib.auth import authenticate, login, logout
+from django.core.mail import BadHeaderError, send_mail
 
 # Create your views here.
 
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
 def index(request):
     
     if request.method == "GET":
@@ -126,3 +130,20 @@ def mypage(request):
         
         return redirect("mypage")
     
+    
+    
+@csrf_exempt 
+def send_email(request):
+    
+    if request.method == "POST":
+        
+        subject = "ゴミ箱が一杯です！"
+        message = "ゴミ箱が一杯になりそうです。ゴミ袋を取り替えて下さい。"
+        from_email = "information@myproject"
+        recipient_list = [
+            "koukifurukawa0625@gmail.com"
+        ]
+
+        send_mail(subject, message, from_email, recipient_list)
+        
+        return HttpResponse()
