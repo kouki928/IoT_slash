@@ -33,3 +33,23 @@
     background-color: rgb(70, 70, 136);
     font-size: medium; 
 }
+
+.menu_text {
+    font-size: small;
+}
+
+main {
+    width: 100%;
+}
+
+.home_discription {
+    margin: 2%;
+    font-size: large;
+    padding-bottom: 2%;
+}
+
+.google_map {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}

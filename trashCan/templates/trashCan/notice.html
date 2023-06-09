@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static 'css/reset.css' %}>
+    <link rel="stylesheet" href={% static 'css/mypage.css' %}>
+    <script src={% static 'js/main.js' %}></script>
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="status">
+        <div class="wrap">
+            <div class="header">
+                <div class="title">通知</div>
+                <form action={% url "mypage" %} method="POST">{% csrf_token %}
+                    <input type="hidden" name="edit" value="back">
+                    <input type="submit" id="edit" value="マイページ" class="to_edit">
+                </form>
+                <a href={% url 'auth' %} class="to_home">ホームへ</a>
+            </div>
+        </div>
+    </div>
+
+    {% if notification %}
+
+        {% for data in notice %}
+        <div class="outer">
+            <h2 class="caption">{{ data.title }}</h2>
+            <p class="data">{{ data.body }}</p>
+        </div>
+        <hr width="70%">
+        {% endfor %}
+
+    {% else %}
+
+        <p>通知はありません！</p>
+
+    {% endif %}
+
+</body>
+</html>

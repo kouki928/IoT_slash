@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
+    <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-2-4/css/5-2-4.css"> {% endcomment %}
     <link rel="stylesheet" href={% static "css/reset.css" %}>
     <link rel="stylesheet" href={% static "css/index.css" %}>
     <title>Document</title>
@@ -17,11 +19,23 @@
                 <div class="title">ホーム</div>
                 <form action={% url "auth" %} method="POST">{% csrf_token %}
                     <input type="hidden" name="inout" value="logout">
-                    <input type="submit" value="ログアウト" class="logout_button"></input>
+                    <input type="submit" value="ログアウト" class="logout_button menu_text"></input>
                 </form>
-                <a href={% url 'mypage' %} class="to_home">マイページ</a>
+                <a href={% url 'mypage' %} class="to_home menu_text">マイページ</a>
+                <a href={% url 'notice' %} class="to_home menu_text">通知</a>
             </div>
         </div>
+
+        <main>
+
+            <div class="home_discription">
+                <p>「ピン刺したところにIoTゴミ箱があるよ～ポイ捨てはやめようね！」って感じのテキスト</p>
+            </div>
+
+            <div class="google_map">
+                <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Oc2OpI7ppPNRNPaNpktpY4prsFgGOuA&ehbc=2E312F" width="640" height="480"></iframe>
+            </div>
+        </main>
         
 
 

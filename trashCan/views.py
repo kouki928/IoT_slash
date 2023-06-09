@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from .models import userInfo
+from .models import userInfo,userNotice
 from django.contrib.auth import authenticate, login, logout
 from django.core.mail import BadHeaderError, send_mail
 
@@ -93,7 +93,7 @@ def signUp(request):
                 return HttpResponse("Error")
             
             
-            
+@csrf_exempt            
 def mypage(request):
     
     user_id = request.user
@@ -130,8 +130,29 @@ def mypage(request):
         
         return redirect("mypage")
     
+
+@csrf_exempt
+def notice(request):
+    
+    if request.method == "GET":
+        
+        user_id = request.user
+        notice_data = userNotice.objects.filter(user_id=user_id).values()
+        user_notice = []
+        
+        for data in notice_data:
+            user_notice.append({
+                "title" : data["title"],
+                "body"  : data["body"]
+            })
+        
+        return render(request, "trashCan/notice.html",{
+            "notice" : user_notice,
+            "notification" : user_notice if user_notice else False
+        })
     
     
+
 @csrf_exempt 
 def send_email(request):
     
@@ -146,4 +167,8 @@ def send_email(request):
 
         send_mail(subject, message, from_email, recipient_list)
         
+        return HttpResponse()
+
+    elif request.method == "GET":
+        print("通知が来たよ！")
         return HttpResponse()

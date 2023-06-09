@@ -1,3 +1,1 @@
-function ok(){
-    console.log("ok");
-}
+fetch("")

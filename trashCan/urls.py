@@ -5,5 +5,6 @@ urlpatterns = [
     path("", views.index, name="auth"),
     path("signUp", views.signUp, name="signUp"),
     path("mypage", views.mypage, name="mypage"),
-    path("send_email", views.send_email, name="sendEmail")
+    path("send_email", views.send_email, name="sendEmail"),
+    path("notice", views.notice, name="notice"),
 ]
