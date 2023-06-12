@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-2-4/css/5-2-4.css"> {% endcomment %}
     <link rel="stylesheet" href={% static "css/reset.css" %}>
     <link rel="stylesheet" href={% static "css/index.css" %}>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
     <title>Document</title>
 </head>
 <body>
@@ -36,6 +37,32 @@
                 <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Oc2OpI7ppPNRNPaNpktpY4prsFgGOuA&ehbc=2E312F" width="640" height="480"></iframe>
             </div>
         </main>
+
+
+        <footer>
+            <div class="icon-bar">
+                <a href={% url 'auth' %}>
+                    <div class="icons parking" >
+                        <span class="material-symbols-outlined md-48"> local_parking </span>
+                    </div>
+                </a>
+                <a href={% url 'auth' %}>
+                    <div class="icons map">
+                        <span class="material-symbols-outlined md-48"> location_on </span>
+                    </div>
+                </a>
+                <a href={% url 'notice' %}>
+                    <div class="icons chat">
+                        <span class="material-symbols-outlined md-48"> chat </span>
+                    </div>
+                </a>
+                <a href={% url 'mypage' %}>
+                    <div class="icons person">
+                        <span class="material-symbols-outlined md-48"> person </span>
+                    </div>
+                </a>
+            </div>
+          </footer>
         
 
 
