@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static 'css/reset.css' %}>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet" href={% static 'css/index.css' %}>
+    <title>points</title>
+</head>
+<body>
+
+    <div class="status">
+        <div class="wrap">
+            <div class="header">
+                <div class="title">マイページ</div>
+                <form action={% url "mypage" %} method="POST">{% csrf_token %}
+                    <input type="hidden" name="edit" value="transition">
+                    <input type="submit" id="edit" value="編集" class="to_edit">
+                </form>
+                <a href={% url 'auth' %} class="to_home">ホームへ</a>
+                <a href={% url 'notice' %} class="to_home menu_text">通知</a>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="home_discription">
+        <p>「ポイント画面だッ！」って感じのテキスト</p>
+    </div>
+
+    <div class="point_title">
+        <p>あなたは</p>
+        <div class="point">
+            <h2>570 P</h2>
+            <p>所持しています</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="contents">
+        <div class="icons person">
+            <span class="material-symbols-outlined md-48"> person </span>
+        </div>
+        <h2> OOO Pt </h2>
+        <div class-"contents_discription">
+            <p>コーヒー引き換え券</p>
+            <p>セブンイレブン</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="contents">
+        <div class="icons person">
+            <span class="material-symbols-outlined md-48"> person </span>
+        </div>
+        <h2> OOO Pt </h2>
+        <div class-"contents_discription">
+            <p>コーヒー引き換え券</p>
+            <p>セブンイレブン</p>
+        </div>
+    </div>
+
+    <hr><div class="contents">
+        <div class="icons person">
+            <span class="material-symbols-outlined md-48"> person </span>
+        </div>
+        <h2> OOO Pt </h2>
+        <div class-"contents_discription">
+            <p>コーヒー引き換え券</p>
+            <p>セブンイレブン</p>
+        </div>
+    </div>
+
+    <hr><div class="contents">
+        <div class="icons person">
+            <span class="material-symbols-outlined md-48"> person </span>
+        </div>
+        <h2> OOO Pt </h2>
+        <div class-"contents_discription">
+            <p>コーヒー引き換え券</p>
+            <p>セブンイレブン</p>
+        </div>
+    </div>
+
+    <hr><div class="contents">
+        <div class="icons person">
+            <span class="material-symbols-outlined md-48"> person </span>
+        </div>
+        <h2> OOO Pt </h2>
+        <div class-"contents_discription">
+            <p>コーヒー引き換え券</p>
+            <p>セブンイレブン</p>
+        </div>
+    </div>
+
+    <hr><div class="contents">
+        <div class="icons person">
+            <span class="material-symbols-outlined md-48"> person </span>
+        </div>
+        <h2> OOO Pt </h2>
+        <div class-"contents_discription">
+            <p>コーヒー引き換え券</p>
+            <p>セブンイレブン</p>
+        </div>
+    </div>
+
+    <hr>
+    
+
+    <footer>
+        <div class="icon-bar">
+            <a href={% url 'points' %}>
+                <div class="icons parking" >
+                    <span class="material-symbols-outlined md-48"> local_parking </span>
+                </div>
+            </a>
+            <a href={% url 'auth' %}>
+                <div class="icons map">
+                    <span class="material-symbols-outlined md-48"> location_on </span>
+                </div>
+            </a>
+            <a href={% url 'notice' %}>
+                <div class="icons chat">
+                    <span class="material-symbols-outlined md-48"> chat </span>
+                </div>
+            </a>
+            <a href={% url 'mypage' %}>
+                <div class="icons person">
+                    <span class="material-symbols-outlined md-48"> person </span>
+                </div>
+            </a>
+        </div>
+    </footer>
+
+
+</body>
+</html>

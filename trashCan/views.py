@@ -132,6 +132,13 @@ def mypage(request):
     
 
 @csrf_exempt
+def points(request):
+    
+    if request.method == "GET":
+        return render(request, "trashCan/points.html",{})
+    
+
+@csrf_exempt
 def notice(request):
     
     if request.method == "GET":

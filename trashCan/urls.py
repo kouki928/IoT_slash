@@ -7,4 +7,5 @@ urlpatterns = [
     path("mypage", views.mypage, name="mypage"),
     path("send_email", views.send_email, name="sendEmail"),
     path("notice", views.notice, name="notice"),
+    path("points", views.points, name="points"),
 ]

@@ -8,8 +8,7 @@
     <link rel="stylesheet" href={% static 'css/reset.css' %}>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
     <link rel="stylesheet" href={% static 'css/index.css' %}>
-    <script src={% static 'js/main.js' %}></script>
-    <title>Document</title>
+    <title>まいぺーじ</title>
 </head>
 <body>
 
@@ -65,34 +64,40 @@
 
                 </div>
             </div>
-
-            <div class="outer">
-                <div class="caption">user_id</div>
-                <div class="data">{{ user.user_id }}</div>
-            </div>
-            
-            <hr width="70%">
-
-            <div class="outer">
-                <div class="caption">user_name</div>
-                <div class="data">{{ user.user_name }}</div>
-            </div>
-
-            <hr width="70%">
-
-            <div class="outer">
-                <div class="caption">rank_point</div>
-                <div class="data">{{ user.environment_score }}</div>
-            </div>
-
-            <hr width="70%">
-
         </div>
+
+        <div class="home_discription">
+            <p>「マイページだよ！」って感じのテキスト</p>
+        </div>
+
+        <div class="outer">
+            <div class="caption">user_id</div>
+            <div class="data">{{ user.user_id }}</div>
+        </div>
+        
+        <hr width="70%">
+
+        <div class="outer">
+            <div class="caption">user_name</div>
+            <div class="data">{{ user.user_name }}</div>
+        </div>
+
+        <hr width="70%">
+
+        <div class="outer">
+            <div class="caption">rank_point</div>
+            <div class="data">{{ user.environment_score }}</div>
+        </div>
+
+        <hr width="70%">
+
     {% endif %}
+
+    <p>随時追加</p>
 
     <footer>
         <div class="icon-bar">
-            <a href={% url 'auth' %}>
+            <a href={% url 'points' %}>
                 <div class="icons parking" >
                     <span class="material-symbols-outlined md-48"> local_parking </span>
                 </div>

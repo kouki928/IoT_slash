@@ -112,6 +112,46 @@ footer {
     display: none;
 }
 
+.point_title {
+    display: block;
+    text-align: center;
+}
+
+.point_title p{
+    text-align: left;
+    margin-left: 10%;
+}
+
+.point {
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+.point h2 {
+    font-size: 2rem;
+}
+.point p {
+    padding-top: 1rem;
+    padding-left: 5%;
+    font-size: 1rem;
+}
+
+.contents {
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.contents h2{
+    vertical-align: middle;
+    margin: 5% 3%;
+}
+
+.contents_discription{
+    margin-top: 2%;
+}
+
 @media only screen and (max-width : 767px){
     .wrap{
         display: none;
@@ -124,6 +164,7 @@ footer {
         position: fixed;
         width: 100%;
         bottom: 2%;
+        padding-top: 100px;
     }
     
     .icon-bar {
