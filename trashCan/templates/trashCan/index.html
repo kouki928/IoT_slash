@@ -96,3 +96,17 @@
     {% endif %}
 </body>
 </html>
+
+
+{% comment %} 
+fetch("url", {
+    method  : "POST",
+    headers : {
+    "Content-Type" : "application/json",
+    },
+    body: JSON.stringify({
+        "id" : id,
+        "key" : key,
+    })
+})
+ {% endcomment %}

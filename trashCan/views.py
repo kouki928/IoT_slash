@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .models import userInfo,userNotice
 from django.contrib.auth import authenticate, login, logout
 from django.core.mail import BadHeaderError, send_mail
+import json
 
 # Create your views here.
 
@@ -179,3 +180,7 @@ def send_email(request):
     elif request.method == "GET":
         print("通知が来たよ！")
         return HttpResponse()
+    
+    
+# データ受け取り
+# form_data = json.loads(request.body.decode("utf-8")) # 入力内容のデータ
