@@ -8,4 +8,7 @@ urlpatterns = [
     path("send_email", views.send_email, name="sendEmail"),
     path("notice", views.notice, name="notice"),
     path("points", views.points, name="points"),
+    
+    # LINE用
+    path("line", views.line, name="line"),
 ]

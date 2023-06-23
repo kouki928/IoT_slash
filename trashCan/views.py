@@ -5,10 +5,25 @@ from .models import userInfo,userNotice
 from django.contrib.auth import authenticate, login, logout
 from django.core.mail import BadHeaderError, send_mail
 import json
+from django.http.response import JsonResponse
+from .line_message import *
+from .messages import prepareText
 
 # Create your views here.
 
 from django.views.decorators.csrf import csrf_exempt
+
+
+@csrf_exempt
+def line(request):
+    
+    if request.method == "POST":
+        
+        request_data = json.loads(request.body.decode("utf-8"))
+        print(request_data)
+        
+        return HttpResponse()
+
 
 @csrf_exempt
 def index(request):
@@ -70,6 +85,7 @@ def signUp(request):
     elif request.method == "POST":
         forms = request.POST
         user_id = forms["user_id"]
+        line_id = forms["line_id"]
         password = forms["password"]
         
         try:
@@ -83,8 +99,10 @@ def signUp(request):
         except:
         
             User.objects.create_user(username=user_id,password=password)
-            userInfo.objects.create(user_id=user_id, user_name="未設定", environment_score=0)
+            userInfo.objects.create(user_id=user_id, user_name="未設定", environment_score=0, line_id=line_id)
             user = authenticate(request, username=user_id, password=password)
+            
+            print(line_id)
             
             if user is not None:
                 login(request, user)
@@ -166,21 +184,51 @@ def send_email(request):
     
     if request.method == "POST":
         
-        subject = "ゴミ箱が一杯です！"
-        message = "ゴミ箱が一杯になりそうです。ゴミ袋を取り替えて下さい。"
-        from_email = "information@myproject"
-        recipient_list = [
-            "koukifurukawa0625@gmail.com"
-        ]
+        # subject = "ゴミ箱が一杯です！"
+        # message = "ゴミ箱が一杯になりそうです。ゴミ袋を取り替えて下さい。"
+        # from_email = "information@myproject"
+        # recipient_list = [
+        #     "koukifurukawa0625@gmail.com"
+        # ]
 
-        send_mail(subject, message, from_email, recipient_list)
+        # send_mail(subject, message, from_email, recipient_list)
+        user_id = request.body.decode("utf-8")
+        user_obj = userInfo.objects.filter(user_id=user_id).values()
         
-        return HttpResponse()
+        message = prepareText([
+            "ゴミ箱が一杯になりました！\n" +
+            "ゴミ袋を取り替えましょう！"
+        ])
+        push_message(address=user_obj[0]["line_id"], messages=message)
+        
+        return JsonResponse({})
 
-    elif request.method == "GET":
-        print("通知が来たよ！")
-        return HttpResponse()
     
+    elif request.method == "OPTIONS":
+        # subject = "ゴミ箱が一杯です！"
+        # message = "ゴミ箱が一杯になりそうです。ゴミ袋を取り替えて下さい。"
+        # from_email = "information@myproject"
+        # recipient_list = [
+        #     "koukifurukawa0625@gmail.com"
+        # ]
+
+        # send_mail(subject, message, from_email, recipient_list)
+        
+        # request = json.loads(request.body.decode("utf-8"))
+        print(request.headers)
+        print(request.body)
+        
+        # user = request["key"]
+        
+        # print(user_obj["line_id"])
+        
+        # message = prepareText([
+        #     "ゴミ箱が一杯になりました！\n" +
+        #     "ゴミ袋を取り替えましょう！"
+        # ])
+        # push_message(address=user_obj["line_id"], messages=message)
+        
+        return JsonResponse({})    
     
 # データ受け取り
 # form_data = json.loads(request.body.decode("utf-8")) # 入力内容のデータ
