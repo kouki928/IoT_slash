@@ -7,7 +7,7 @@ from django.core.mail import BadHeaderError, send_mail
 import json
 from django.http.response import JsonResponse
 from .line_message import *
-from .messages import prepareText
+from .messages import prepareText,MANAGEMENT_BUTTON_MESSAGE
 
 # Create your views here.
 
@@ -20,7 +20,17 @@ def line(request):
     if request.method == "POST":
         
         request_data = json.loads(request.body.decode("utf-8"))
-        print(request_data)
+        user_data = request_data["events"][0]
+        
+        userId    = ""
+        groupId   = ""
+        roomId    = ""
+        
+        if user_data["source"]["type"] == "user":
+            userId = user_data["source"]["userId"]
+            
+        # if user_data["postback"]["data"] == "changed":
+            
         
         return HttpResponse()
 
@@ -194,39 +204,24 @@ def send_email(request):
         # send_mail(subject, message, from_email, recipient_list)
         user_id = request.body.decode("utf-8")
         user_obj = userInfo.objects.filter(user_id=user_id).values()
+        line_id = user_obj[0]["line_id"]
         
         message = prepareText([
             "ゴミ箱が一杯になりました！\n" +
             "ゴミ袋を取り替えましょう！"
         ])
         push_message(address=user_obj[0]["line_id"], messages=message)
+        push_flex_message(address=line_id,label="ゴミ箱が一杯です!", messages=MANAGEMENT_BUTTON_MESSAGE)
+        
+        
         
         return JsonResponse({})
 
     
     elif request.method == "OPTIONS":
-        # subject = "ゴミ箱が一杯です！"
-        # message = "ゴミ箱が一杯になりそうです。ゴミ袋を取り替えて下さい。"
-        # from_email = "information@myproject"
-        # recipient_list = [
-        #     "koukifurukawa0625@gmail.com"
-        # ]
 
-        # send_mail(subject, message, from_email, recipient_list)
-        
-        # request = json.loads(request.body.decode("utf-8"))
         print(request.headers)
         print(request.body)
-        
-        # user = request["key"]
-        
-        # print(user_obj["line_id"])
-        
-        # message = prepareText([
-        #     "ゴミ箱が一杯になりました！\n" +
-        #     "ゴミ袋を取り替えましょう！"
-        # ])
-        # push_message(address=user_obj["line_id"], messages=message)
         
         return JsonResponse({})    
     
